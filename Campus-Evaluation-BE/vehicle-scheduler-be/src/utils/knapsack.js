@@ -15,9 +15,9 @@ function knapsackTasks(tasks, capacityHours) {
     
     for (let i = 1; i <= n; i++) {
         const task = tasks[i - 1];
-        const duration = task.duration !== undefined ? task.duration : 0;
+        const duration = task.estimatedServiceDuration ?? task.duration ?? 0;
         const w = Math.round(duration * scale);
-        const v = task.priority !== undefined ? task.priority : (task.operational_impact_score || 0);
+        const v = task.impactScore ?? task.priority ?? task.operational_impact_score ?? 0;
         
         for (let j = 0; j <= W; j++) {
             if (w <= j) {
@@ -38,9 +38,9 @@ function knapsackTasks(tasks, capacityHours) {
         } else {
             const task = tasks[i - 1];
             selectedTasks.push(task);
-            const v = task.priority !== undefined ? task.priority : (task.operational_impact_score || 0);
+            const v = task.impactScore ?? task.priority ?? task.operational_impact_score ?? 0;
             res -= v;
-            const duration = task.duration !== undefined ? task.duration : 0;
+            const duration = task.estimatedServiceDuration ?? task.duration ?? 0;
             w -= Math.round(duration * scale);
         }
     }
