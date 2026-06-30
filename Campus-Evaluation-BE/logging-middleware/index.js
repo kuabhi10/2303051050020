@@ -30,7 +30,6 @@ async function Log(stack, level, pkg, message) {
             }
         });
     } catch (err) {
-        // fail silently
     }
 }
 
