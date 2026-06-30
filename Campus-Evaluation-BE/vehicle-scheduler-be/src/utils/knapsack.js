@@ -1,7 +1,7 @@
 const { Log } = require('../../../logging-middleware');
 
-function knapsackTasks(tasks, capacityHours) {
-    Log('backend', 'info', 'utils', 'Optimization started: 0/1 Knapsack problem');
+async function knapsackTasks(tasks, capacityHours) {
+    await Log('backend', 'info', 'utils', 'Optimization started: 0/1 Knapsack problem');
     
     if (!tasks || tasks.length === 0 || capacityHours <= 0) {
         return [];
@@ -45,7 +45,7 @@ function knapsackTasks(tasks, capacityHours) {
         }
     }
     
-    Log('backend', 'info', 'utils', 'Optimization completed: Subset of tasks selected');
+    await Log('backend', 'info', 'utils', 'Optimization completed: Subset of tasks selected');
     
     return selectedTasks.reverse();
 }

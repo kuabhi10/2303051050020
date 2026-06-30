@@ -1,13 +1,19 @@
 {
   "name": "notification-app-be",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Real-time Notification System backend implementation and design.",
+  "main": "priority_notifications.js",
   "scripts": {
+    "start": "node priority_notifications.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "notifications",
+    "backend",
+    "system-design"
+  ],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {}
 }
