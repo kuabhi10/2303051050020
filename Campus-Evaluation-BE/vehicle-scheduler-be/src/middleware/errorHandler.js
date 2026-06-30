@@ -4,7 +4,6 @@ function errorHandler(err, req, res, next) {
     Log('backend', 'error', 'middleware', `Exception caught in errorHandler: ${err.message}`);
     
     if (err.response) {
-        // Axios error from Evaluation API
         Log('backend', 'error', 'middleware', `Evaluation API failure, returned HTTP ${err.response.status}`);
         return res.status(502).json({ error: 'Evaluation API failure' });
     }
