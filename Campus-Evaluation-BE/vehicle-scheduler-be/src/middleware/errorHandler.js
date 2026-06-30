@@ -1,0 +1,16 @@
+const { Log } = require('../../../logging-middleware');
+
+function errorHandler(err, req, res, next) {
+    Log('backend', 'error', 'middleware', `Exception caught in errorHandler: ${err.message}`);
+    
+    if (err.response) {
+        // Axios error from Evaluation API
+        Log('backend', 'error', 'middleware', `Evaluation API failure, returned HTTP ${err.response.status}`);
+        return res.status(502).json({ error: 'Evaluation API failure' });
+    }
+    
+    Log('backend', 'error', 'middleware', 'Error response sent: 500 Internal Server Error');
+    res.status(500).json({ error: 'Internal Server Error' });
+}
+
+module.exports = errorHandler;
