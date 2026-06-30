@@ -24,7 +24,9 @@ async function scheduleMaintenance(depotId, availableHours) {
 
         if (!depot || Object.keys(depot).length === 0) {
             await Log('backend', 'error', 'service', `Depot not found for depotId: ${depotId}`);
-            throw new Error(`Depot not found for id: ${depotId}`);
+            const err = new Error(`Depot not found for id: ${depotId}`);
+            err.status = 404;
+            throw err;
         }
 
         await Log('backend', 'info', 'service', `Depot API success for depotId: ${depotId}`);
