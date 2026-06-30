@@ -1,3 +1,4 @@
 vehicle-scheduler-be/node_modules/
 logging-middleware/node_modules/
 **/node_modules/
+**/.env

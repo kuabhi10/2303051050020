@@ -8,7 +8,7 @@ const ALLOWED_PACKAGES = new Set([
     'auth', 'config', 'middleware', 'utils'
 ]);
 
-function Log(stack, level, pkg, message) {
+async function Log(stack, level, pkg, message) {
     if (!ALLOWED_STACKS.has(stack) || !ALLOWED_LEVELS.has(level) || !ALLOWED_PACKAGES.has(pkg)) {
         return;
     }
@@ -23,13 +23,16 @@ function Log(stack, level, pkg, message) {
         message
     };
 
-    axios.post(apiUrl, payload, {
-        headers: {
-            'Authorization': `Bearer ${apiToken}`,
-            'Content-Type': 'application/json'
-        }
-    }).catch((err) => {
-    });
+    try {
+        await axios.post(apiUrl, payload, {
+            headers: {
+                'Authorization': `Bearer ${apiToken}`,
+                'Content-Type': 'application/json'
+            }
+        });
+    } catch (err) {
+        // fail silently
+    }
 }
 
 module.exports = { Log };
